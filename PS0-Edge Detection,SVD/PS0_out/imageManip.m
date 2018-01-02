@@ -4,15 +4,26 @@
 dark = double(rgb2gray(imread('u2dark.png')));
 
 %%%%%% Your part (a) code here: calculate statistics
-meanColunm = mean(dark);
-mean(meanColunm)
+%=============================================
+% can use dark(:) to list all the value for(sum,mean,max) operation
+% ===========================================
+meanValue = mean(dark(:));
+
 %%%%%% Your part (b) code here: apply offset and scaling
 fixedimg = [];
-offset = min(min(dark))
-Max = max(max(dark))
+minVal= min(dark(:));
+maxVal= max(dark(:));
 %displays the image
-imshow(uint8(fixedimg));
+scale = 255/(maxVal-minVal);
+fixedimg = (dark-minVal)*scale;
+figure,imshow(uint8(fixedimg));
 
 %%%%%% Your part (c) code here: apply the formula to increase contrast,
 % and display the image
 contrasted = [];
+%=============================================
+% can use uint8 to force pixel value of image range from (0~255)
+% ===========================================
+contrasted = uint8(2*(fixedimg-128)+128);
+
+figure,imshow(contrasted);

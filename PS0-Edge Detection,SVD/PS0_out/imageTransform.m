@@ -8,7 +8,8 @@ A = [cos(theta) -sin(theta); sin(theta) cos(theta)];
 %matrix, and run this script.
 %%%%%%%%%%%% Your code here %%%%%%%%%%%%%%
 T = [1 0;0 1];
-
+S = [1 0;0 0.5];
+T = A*S;
 %%%%%%%%%%%% end of your code %%%%%%%%%%%%%%
 
 %The code below applies the transformation to every pixel in the image, and 
@@ -16,6 +17,9 @@ T = [1 0;0 1];
 %that have low educational value, and you don't need to understand it.
 
 %adds the translation part to get a complete affine transformation matrix
+%==========================================
+% mannuly convert a 2*2 matrix into a 3*3 matrix
+% ==========================================
 TWithTranslation = [T [0;0];0 0 1];
 
 %MATLAB affine-transform convention is the transpose of ours, so we feed it
