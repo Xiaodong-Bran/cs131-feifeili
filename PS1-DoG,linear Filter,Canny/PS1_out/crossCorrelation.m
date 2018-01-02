@@ -19,6 +19,7 @@ imshow(template, [] , 'InitialMagnification', 50);
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 correlationImg = [];
+correlationImg=normxcorr2(template,photo);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
@@ -36,12 +37,19 @@ imshow(correlationImg, [], 'InitialMagnification', 50);
 % The max function returns both the value of the maximum value and its
 % linear index within the array. We don't care about the value of the
 % maximum, so we discard the first output value with using the ~ notation.
+%===========================================
+% can use the ind2sub function to convert a linear back into matrix
+% coordinates.
+%===========================================
 [~, maxValLinearIndex] = max(correlationImg(:));
 
 % We use the ind2sub function to convert a linear back into matrix
 % coordinates.
-[y, x] = ind2sub(size(correlationImg), maxValLinearIndex);
 
+[y, x] = ind2sub(size(correlationImg), maxValLinearIndex);
+%===================================================
+% Display a rectangle around the peak we just found
+%===================================================
 % Display a rectangle around the peak we just found.
 rectangle('Position', [x-15, y-15, 30, 30], 'EdgeColor', 'r')
 hold off;
@@ -57,7 +65,7 @@ largerTemplate = rgb2gray(imread('trailerSlightlyBigger.png'));
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mismatchedCorrelationImg = [];
-
+mismatchedCorrelationImg =  normxcorr2(largerTemplate,photo);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
 %                               END OF YOUR CODE                               %

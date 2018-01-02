@@ -48,6 +48,9 @@ function blurred = BoxBlur(img)
     n=5; % width of the blur
     blurred = zeros(height-(n-1),width-(n-1));
     % Loop through each pixel location in the result
+    %=================================================
+    % box filter: pay attention to the boundary index
+    %===================================================
     for y=1:height-(n-1)
         for x=1:width-(n-1)
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
