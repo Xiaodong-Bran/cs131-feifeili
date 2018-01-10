@@ -84,6 +84,9 @@ function [x, y, R] = RANSAC(D, maxIter, maxInlierError, goodFitThresh)
         % this model. The nonSeedIsInlier vector should have a 1 (true)
         % when the corresponding point is an inlier, and a 0 when it is not
         % an inlier.
+        %==============================================================
+        % use bool value to mark/distinguish numbers from the group
+        %==============================================================
         nonSeedIsInlier = false(nonSeedSetSize, 1);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
@@ -168,7 +171,9 @@ function [x, y, R] = RANSAC(D, maxIter, maxInlierError, goodFitThresh)
         disp('No RANSAC fit was found.')
     end
 end
-
+%======================================================
+% random split the group into seeddata and nonseeddata
+%======================================================
 function [D1, D2] = RandomlySplitData(D, splitSize)
 % Randomly split the rows of a matrix into two sets.
 %
